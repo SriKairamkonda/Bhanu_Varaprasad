@@ -14,7 +14,7 @@ library(tidyr)
 library(reshape2)
 
 # Load the dataset
-HousingData <- read.csv("C:/Users/prasad/Downloads/AN/KN/HousingData.csv")
+HousingData <- read.csv("C:/Users/prasad/Downloads/HousingData.csv")
 
 # Display the structure of the dataset
 str(HousingData)
@@ -82,7 +82,7 @@ library(randomForest)
 library(ggplot2)
 
 # Load the dataset
-data <- read.csv("C:/Users/prasad/Downloads/AN/KN/HousingData.csv")
+data <- read.csv("C:/Users/prasad/Downloads/HousingData.csv")
 
 # Remove rows with missing values
 data <- na.omit(data)
@@ -130,7 +130,7 @@ library(xgboost)
 library(ggplot2)
 
 # Load the dataset
-data <- read.csv("C:/Users/prasad/Downloads/AN/KN/HousingData.csv")
+data <- read.csv("C:/Users/prasad/Downloads/HousingData.csv")
 
 # Remove rows with missing values
 data <- na.omit(data)
@@ -180,7 +180,7 @@ library(randomForest)
 library(ggplot2)
 
 # Load and preprocess the data
-data <- na.omit(read.csv("C:/Users/prasad/Downloads/AN/KN/HousingData.csv"))
+data <- na.omit(read.csv("C:/Users/prasad/Downloads/HousingData.csv"))
 set.seed(42)
 indices <- sample(1:nrow(data), 0.8 * nrow(data))
 train_data <- data[indices, ]

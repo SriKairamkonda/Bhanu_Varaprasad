@@ -3,7 +3,7 @@
 "0","library(ggplot2)"
 "0",""
 "0","# Load and preprocess the data"
-"0","data <- na.omit(read.csv(""C:/Users/prasad/Downloads/AN/KN/HousingData.csv""))"
+"0","data <- na.omit(read.csv(""C:/Users/prasad/Downloads/HousingData.csv""))"
 "0","set.seed(42)"
 "0","indices <- sample(1:nrow(data), 0.8 * nrow(data))"
 "0","train_data <- data[indices, ]"

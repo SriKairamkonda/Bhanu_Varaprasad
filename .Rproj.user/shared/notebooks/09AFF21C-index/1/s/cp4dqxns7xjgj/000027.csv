@@ -28,7 +28,7 @@ Attaching package: ‘reshape2’
 
 "
 "0","# Load the dataset"
-"0","HousingData <- read.csv(""C:/Users/prasad/Downloads/AN/KN/HousingData.csv"")"
+"0","HousingData <- read.csv(""C:/Users/prasad/Downloads/HousingData.csv"")"
 "0",""
 "0","# Display the structure of the dataset"
 "0","str(HousingData)"
