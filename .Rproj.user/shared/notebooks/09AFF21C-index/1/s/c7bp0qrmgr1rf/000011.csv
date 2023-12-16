@@ -19,7 +19,7 @@ Attaching package: ‘xgboost’
 "0","library(ggplot2)"
 "0",""
 "0","# Load the dataset"
-"0","data <- read.csv(""C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv"")"
+"0","data <- read.csv(""C:/Users/prasad/Downloads/AN/KN/HousingData.csv"")"
 "0",""
 "0","# Remove rows with missing values"
 "0","data <- na.omit(data)"

@@ -11,7 +11,7 @@ image: "b.jpg"
 library(ggplot2)
 
 # Load the dataset
-wine_data <- read.csv("C:/Users/YOJANA/Downloads/AN/KN/WineQT.csv")
+wine_data <- read.csv("C:/Users/prasad/Downloads/AN/KN/WineQT.csv")
 
 # Explore the structure of the dataset
 str(wine_data)
