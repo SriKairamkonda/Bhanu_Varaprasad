@@ -2,13 +2,13 @@ project:
   type: website
 
 website:
-  title: "Bhanu Prasad"
+  title: "Bhanu Varaprasad"
   favicon: "images/profile.jpg"
   page-footer:
     center: |
-      [Contact Bhanu Prasad](mailto: kairamkondasri@gmail.com)
+      [Contact Bhanu Varaprasad](mailto: kairamkondasri@gmail.com)
     left: |
-      Made with [ Bhanu Prasad ](https://quarto.org/)
+      Made with [ Bhanu Varaprasad ](https://quarto.org/)
     right: |
       [Github Code Repo](https://github.com)
     background: "#ff0000"
