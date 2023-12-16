@@ -1,0 +1,78 @@
+---
+title: "Wine dataset exploratory data analysis"
+author: "Bhanu Prasad"
+date: "2023-12-12"
+categories: [news, code, analysis,plotly,plot]
+image: "profile.jpg"
+---
+
+```{r}
+# Load required libraries
+library(ggplot2)
+
+# Load the dataset
+wine_data <- read.csv("C:/Users/HP/Downloads/WineQT.csv")
+
+# Explore the structure of the dataset
+str(wine_data)
+
+# Display summary statistics
+summary(wine_data)
+
+# Check for missing values
+sum(is.na(wine_data))
+
+# Data visualization for each feature
+# You can customize the plots based on your preferences and requirements
+
+# Box plots for each input variable
+for (col in 1:11) {
+  ggplot(wine_data, aes(x = quality, y = wine_data[, col])) +
+    geom_boxplot(fill = "skyblue", color = "steelblue") +
+    labs(title = paste("Box plot of", names(wine_data)[col]))
+}
+
+# Correlation matrix
+cor_matrix <- cor(wine_data[, 1:11])
+ggplot(data = as.data.frame(as.table(cor_matrix)), aes(x = Var1, y = Var2, fill = Freq)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "blue", high = "red", mid = "white", midpoint = 0, limit = c(-1, 1), space = "Lab",
+                       name = "Correlation") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, size = 10, hjust = 1))
+
+# Histogram of the target variable (quality)
+ggplot(wine_data, aes(x = quality)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "steelblue") +
+  labs(title = "Histogram of Wine Quality")
+
+# Class distribution bar plot
+ggplot(wine_data, aes(x = as.factor(quality), fill = as.factor(quality))) +
+  geom_bar() +
+  labs(title = "Class Distribution of Wine Quality")
+
+# Pair plots for a subset of variables
+# You can customize the subset based on your preferences
+subset_vars <- c("fixed acidity", "volatile acidity", "citric acid", "residual sugar", "quality")
+
+# Replace spaces in column names with dots and use backticks
+colnames(wine_data) <- gsub(" ", ".", colnames(wine_data))
+
+# Check the column names to ensure they match with the actual names in your dataset
+colnames(wine_data)
+
+# Subset of variables for pair plots
+subset_vars <- c("fixed.acidity", "volatile.acidity", "citric.acid", "residual.sugar", "quality")
+
+# Scatter plot matrix for a subset of variables
+pairs(wine_data[, subset_vars], pch = 16, col = as.factor(wine_data$quality))
+
+# Correlation heatmap
+library(corrplot)
+corrplot(cor(wine_data[, 1:11]), method = "color")
+
+```
+
+***The summary statistics provide insights into the key characteristics of the dataset related to red variants of Portuguese "Vinho Verde" wine. The physicochemical properties of the wines vary across the sampled instances. The mean fixed acidity is 8.311, with a range from 4.6 to 15.9. Volatile acidity ranges from 0.12 to 1.58, with a mean of 0.5313. Citric acid content ranges from 0 to 1, with a mean of 0.2684. Residual sugar has a mean of 2.532 and ranges from 0.9 to 15.5. Chlorides, free sulfur dioxide, total sulfur dioxide, density, pH, sulphates, and alcohol also exhibit varying ranges and means. The quality scores, ranging from 3 to 8, have a mean of 5.657. The dataset comprises 1598 instances, with an 'Id' column ranging from 0 to 1597. The summary provides a concise overview of the dataset's central tendencies and variability, laying the foundation for further exploration and modeling.***
+
+------------------------------------------------------------------------

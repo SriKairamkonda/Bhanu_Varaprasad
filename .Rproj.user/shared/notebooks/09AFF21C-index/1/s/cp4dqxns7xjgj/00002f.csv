@@ -1,0 +1,3 @@
+"0","for (i in 1:14) {"
+"0","  boxplot(HousingData[, i], main = colnames(HousingData)[i], col = ""lightblue"")"
+"0","}"

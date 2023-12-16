@@ -1,0 +1,12 @@
+---
+title: "Projects"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: table
+  categories: true
+  sort-ui: false
+  filter-ui: falsequarto publish netlify
+page-layout: full
+title-block-banner: true
+---

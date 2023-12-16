@@ -1,0 +1,3 @@
+"0",""
+"0","# Explore relationships between variables using scatter plots"
+"0","pairs(HousingData[, c(""CRIM"", ""RM"", ""AGE"", ""DIS"", ""TAX"", ""LSTAT"", ""MEDV"")])"

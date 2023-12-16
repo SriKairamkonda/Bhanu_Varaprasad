@@ -1,0 +1,7 @@
+"0",""
+"0","# Explore relationships between selected variables"
+"0","ggplot(HousingData, aes(x = RM, y = MEDV)) +"
+"0","  geom_point(color = ""darkgreen"") +"
+"0","  labs(title = ""Scatter Plot of RM vs. MEDV"","
+"0","       x = ""Average Number of Rooms"","
+"0","       y = ""Median Home Value ($1000's)"")"

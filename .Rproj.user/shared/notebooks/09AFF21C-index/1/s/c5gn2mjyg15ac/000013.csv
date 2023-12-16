@@ -1,0 +1,66 @@
+"0","# Install and load the required packages"
+"0","library(randomForest)"
+"2","Warning: package ‘randomForest’ was built under R version 4.3.2"
+"2","randomForest 4.7-1.1
+"
+"2","Type rfNews() to see new features/changes/bug fixes.
+"
+"2","
+Attaching package: ‘randomForest’
+
+"
+"2","The following object is masked from ‘package:dplyr’:
+
+    combine
+
+"
+"2","The following object is masked from ‘package:ggplot2’:
+
+    margin
+
+"
+"0","library(ggplot2)"
+"0",""
+"0","# Load the dataset"
+"0","data <- read.csv(""C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv"")"
+"0",""
+"0","# Remove rows with missing values"
+"0","data <- na.omit(data)"
+"0",""
+"0","# Separate features (X) and target variable (y)"
+"0","X <- data[, colnames(data) != ""MEDV""]"
+"0","y <- data$MEDV"
+"0",""
+"0","# Split the data into training and testing sets"
+"0","set.seed(42)"
+"0","indices <- sample(1:nrow(data), 0.8 * nrow(data))"
+"0","train_data <- data[indices, ]"
+"0","test_data <- data[-indices, ]"
+"0",""
+"0","# Initialize the Random Forest Regressor"
+"0","rf_model <- randomForest(MEDV ~ ., data = train_data, ntree = 100)"
+"0",""
+"0","# Make predictions on the test set"
+"0","predictions <- predict(rf_model, newdata = test_data)"
+"0",""
+"0","# Evaluate the model"
+"0","mse <- mean((predictions - test_data$MEDV)^2)"
+"0","r_squared <- 1 - mse / var(test_data$MEDV)"
+"0",""
+"0","print(paste(""Mean Squared Error:"", mse))"
+"1","[1]"
+"1"," ""Mean Squared Error: 10.243041067851"""
+"1","
+"
+"0","print(paste(""R-squared:"", r_squared))"
+"1","[1]"
+"1"," ""R-squared: 0.897607585182528"""
+"1","
+"
+"0","# Visualization: Scatter plot of actual vs. predicted values"
+"0","ggplot(data = test_data, aes(x = MEDV, y = predictions)) +"
+"0","  geom_point(color = ""blue"", alpha = 0.6) +"
+"0","  geom_abline(intercept = 0, slope = 1, linetype = ""dashed"", color = ""red"") +"
+"0","  labs(title = ""Actual vs. Predicted Values"","
+"0","       x = ""Actual Values"","
+"0","       y = ""Predicted Values"")"

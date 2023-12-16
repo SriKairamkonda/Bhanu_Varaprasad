@@ -1,0 +1,37 @@
+project:
+  type: website
+
+website:
+  title: "Bhanu Varaprasad"
+  favicon: "images/profile.jpg"
+  page-footer:
+    center: |
+      [Contact Bhanu Varaprasad](mailto: kairamkondasri@gmail.com)
+    left: |
+      Made with [ Bhanu Varaprasad ](https://quarto.org/)
+    right: |
+      [Github Code Repo](https://github.com)
+    background: "#ff0000"
+    
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: projects.qmd
+        text: Blog
+      - href: resume.qmd
+        text: Resume
+        
+    right:
+      - icon: github
+        href: https://github.com/krishnareddyyojana123
+      - icon: twitter
+        href: https://twitter.com
+format:
+  html:
+    theme:
+      light: zephyr
+      dark: [superhero]
+    highlight-style: github
+editor: visual
+

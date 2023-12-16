@@ -1,0 +1,5 @@
+"0",""
+"0","# Class distribution bar plot"
+"0","ggplot(wine_data, aes(x = as.factor(quality), fill = as.factor(quality))) +"
+"0","  geom_bar() +"
+"0","  labs(title = ""Class Distribution of Wine Quality"")"

@@ -1,0 +1,225 @@
+---
+title: "Housing data analysis"
+author: "Bhanu Varaprasad"
+date: "2023-12-08"
+categories: [news, code, analysis,plotly,plot]
+image: "profile.jpg"
+---
+
+```{r}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(reshape2)
+
+# Load the dataset
+HousingData <- read.csv("C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv")
+
+# Display the structure of the dataset
+str(HousingData)
+
+# Display summary statistics
+summary(HousingData)
+
+# Check for missing values
+sum(is.na(HousingData))
+
+# Explore the distribution of the target variable (MEDV)
+ggplot(HousingData, aes(x = MEDV)) +
+  geom_histogram(fill = "blue", bins = 30) +
+  labs(title = "Distribution of Median Home Values",
+       x = "Median Home Value ($1000's)",
+       y = "Frequency")
+
+# Explore relationships between variables using scatter plots
+pairs(HousingData[, c("CRIM", "RM", "AGE", "DIS", "TAX", "LSTAT", "MEDV")])
+
+# Correlation matrix to identify relationships between variables
+cor_matrix <- cor(HousingData)
+
+# Display a heatmap of the correlation matrix
+ggplot(data = melt(cor_matrix), aes(x = Var1, y = Var2, fill = value)) +
+  geom_tile() +
+  scale_fill_gradient(low = "blue", high = "red") +
+  labs(title = "Correlation Heatmap",
+       x = "Variables",
+       y = "Variables")
+
+# Boxplots to visualize the distribution of variables
+par(mfrow = c(4, 4), mar = c(2, 2, 2, 2))  # Adjust margin parameters
+for (i in 1:14) {
+  boxplot(HousingData[, i], main = colnames(HousingData)[i], col = "lightblue")
+}
+
+# Explore relationships between selected variables
+ggplot(HousingData, aes(x = RM, y = MEDV)) +
+  geom_point(color = "darkgreen") +
+  labs(title = "Scatter Plot of RM vs. MEDV",
+       x = "Average Number of Rooms",
+       y = "Median Home Value ($1000's)")
+
+# Conduct more exploratory data analysis based on your specific questions and hypotheses
+
+# Example: Analyzing the impact of crime rate on median home values
+ggplot(HousingData, aes(x = CRIM, y = MEDV)) +
+  geom_point(alpha = 0.6, color = "red") +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Impact of Crime Rate on Median Home Values",
+       x = "Per Capita Crime Rate",
+       y = "Median Home Value ($1000's)")
+```
+
+***`Exploratory Data Analysis (EDA) is a crucial step in understanding and gaining insights from a dataset. In the case of the Boston Housing Dataset, the summary statistics reveal the variability and distribution of key features such as crime rate (CRIM), proportion of residential land (ZN), and non-retail business acres (INDUS). The dataset contains information about factors like air quality (NOX), average number of rooms (RM), and socio-economic status (LSTAT), which may influence the median value of owner-occupied homes (MEDV). Handling missing values is essential, and in this dataset, 20 rows have missing entries in various columns. Through graphical representations such as histograms and scatter plots, relationships between variables can be observed, aiding in the identification of patterns and potential outliers. The dataset provides a comprehensive view of diverse factors influencing housing values, setting the stage for further in-depth analysis and modeling.`***
+
+***`The correlation matrix provides insights into the relationships between various features in the dataset. Examining the correlation matrix for the Boston Housing Dataset, it is evident that certain pairs of variables exhibit notable correlations. For instance, the variable "RM," representing the average number of rooms per dwelling, displays a positive correlation with the target variable "MEDV," indicating a higher median home value with an increased number of rooms. Conversely, the "LSTAT" variable, representing the percentage of the lower status of the population, demonstrates a negative correlation with "MEDV," suggesting that areas with a higher percentage of lower-status residents tend to have lower median home values. These insights from the correlation matrix lay the foundation for further exploration and model building, guiding the selection of relevant features for predictive analysis in the Boston Housing Dataset.`***
+
+------------------------------------------------------------------------
+
+```{r}
+# Install and load the required packages
+library(randomForest)
+library(ggplot2)
+
+# Load the dataset
+data <- read.csv("C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv")
+
+# Remove rows with missing values
+data <- na.omit(data)
+
+# Separate features (X) and target variable (y)
+X <- data[, colnames(data) != "MEDV"]
+y <- data$MEDV
+
+# Split the data into training and testing sets
+set.seed(42)
+indices <- sample(1:nrow(data), 0.8 * nrow(data))
+train_data <- data[indices, ]
+test_data <- data[-indices, ]
+
+# Initialize the Random Forest Regressor
+rf_model <- randomForest(MEDV ~ ., data = train_data, ntree = 100)
+
+# Make predictions on the test set
+predictions <- predict(rf_model, newdata = test_data)
+
+# Evaluate the model
+mse <- mean((predictions - test_data$MEDV)^2)
+r_squared <- 1 - mse / var(test_data$MEDV)
+
+print(paste("Mean Squared Error:", mse))
+print(paste("R-squared:", r_squared))
+
+# Visualization: Scatter plot of actual vs. predicted values
+ggplot(data = test_data, aes(x = MEDV, y = predictions)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  labs(title = "Actual vs. Predicted Values",
+       x = "Actual Values",
+       y = "Predicted Values")
+```
+
+***The machine learning model, utilizing a Random Forest Regressor with 100 trees, demonstrated promising performance on the Boston Housing Dataset. The evaluation metrics indicate a mean squared error (MSE) of 10.24 and an R-squared value of 0.90 on the test set. The MSE measures the average squared difference between the predicted and actual median values of owner-occupied homes, providing a quantitative assessment of the model's accuracy. In this context, the relatively low MSE signifies that the model's predictions are, on average, close to the true values. Additionally, the high R-squared value of 0.90 suggests that the majority of the variance in the target variable is explained by the model, indicating a strong predictive capability. These results imply that the Random Forest Regressor has effectively captured the complex relationships within the dataset, providing a reliable framework for predicting median home values based on the given features.***
+
+------------------------------------------------------------------------
+
+```{r}
+# Install and load the required packages
+library(pdp)
+library(xgboost)
+library(ggplot2)
+
+# Load the dataset
+data <- read.csv("C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv")
+
+# Remove rows with missing values
+data <- na.omit(data)
+
+# Separate features (X) and target variable (y)
+X <- data[, colnames(data) != "MEDV"]
+y <- data$MEDV
+
+# Split the data into training and testing sets
+set.seed(42)
+indices <- sample(1:nrow(data), 0.8 * nrow(data))
+train_data <- data[indices, ]
+test_data <- data[-indices, ]
+
+# Initialize the XGBoost Regressor
+xgb_model <- xgboost(data = as.matrix(train_data[, colnames(train_data) != "MEDV"]), label = train_data$MEDV, nrounds = 100, objective = "reg:squarederror")
+
+# Make predictions on the test set
+predictions <- predict(xgb_model, as.matrix(test_data[, colnames(test_data) != "MEDV"]))
+
+# Evaluate the model
+mse <- mean((predictions - test_data$MEDV)^2)
+r_squared <- 1 - mse / var(test_data$MEDV)
+
+print(paste("Mean Squared Error:", mse))
+print(paste("R-squared:", r_squared))
+
+# Visualization 1: Scatter plot of actual vs. predicted values
+ggplot(data = test_data, aes(x = MEDV, y = predictions)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  labs(title = "Actual vs. Predicted Values",
+       x = "Actual Values",
+       y = "Predicted Values")
+
+# Visualization 2: Feature Importance Plot
+feature_importance <- xgb.importance(model = xgb_model)
+xgb.plot.importance(importance_matrix = feature_importance)
+
+```
+
+***`The XGBoost model demonstrates a notable reduction in training root mean squared error (train-rmse) throughout the training process, starting from 16.86 and progressively decreasing to 0.0088. The mean squared error on the test set is 9.55, indicating strong predictive performance. The high R-squared value of 0.9045 further confirms the model's ability to explain the variance in the target variable, suggesting that the XGBoost model effectively captures the underlying patterns in the housing data, making it a robust choice for regression tasks.`***
+
+```{r}
+library(xgboost)
+library(randomForest)
+library(ggplot2)
+
+# Load and preprocess the data
+data <- na.omit(read.csv("C:/Users/YOJANA/Downloads/AN/KN/HousingData.csv"))
+set.seed(42)
+indices <- sample(1:nrow(data), 0.8 * nrow(data))
+train_data <- data[indices, ]
+test_data <- data[-indices, ]
+
+# Model A: XGBoost
+xgb_model <- xgboost(data = as.matrix(train_data[, colnames(train_data) != "MEDV"]), label = train_data$MEDV, nrounds = 100, objective = "reg:squarederror")
+predictions_xgb <- predict(xgb_model, as.matrix(test_data[, colnames(test_data) != "MEDV"]))
+mse_xgb <- mean((predictions_xgb - test_data$MEDV)^2)
+
+# Model B: Random Forest
+rf_model <- randomForest(MEDV ~ ., data = train_data, ntree = 100)
+predictions_rf <- predict(rf_model, newdata = test_data)
+mse_rf <- mean((predictions_rf - test_data$MEDV)^2)
+
+# Comparative Analysis
+print("XGBoost Model Metrics:")
+print(paste("Mean Squared Error:", mse_xgb))
+
+print("Random Forest Model Metrics:")
+print(paste("Mean Squared Error:", mse_rf))
+
+# Comparative Scatter Plots
+plot_xgb <- ggplot(data = test_data, aes(x = MEDV, y = predictions_xgb)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  labs(title = "XGBoost - Actual vs. Predicted Values",
+       x = "Actual Values",
+       y = "Predicted Values")
+
+plot_rf <- ggplot(data = test_data, aes(x = MEDV, y = predictions_rf)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "red") +
+  labs(title = "Random Forest - Actual vs. Predicted Values",
+       x = "Actual Values",
+       y = "Predicted Values")
+
+# Display Plots
+print("Comparative Scatter Plots:")
+print(plot_xgb)
+print(plot_rf)
+```
