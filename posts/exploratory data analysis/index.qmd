@@ -1,6 +1,6 @@
 ---
 title: "Wine dataset exploratory data analysis"
-author: "Yojana Krishnareddy"
+author: "Bhanu Varaprasad"
 date: "2023-12-12"
 categories: [news, code, analysis,plotly,plot]
 image: "b.jpg"

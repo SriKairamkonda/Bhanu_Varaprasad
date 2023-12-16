@@ -1,6 +1,6 @@
 ---
 title: "Housing data analysis"
-author: "Yojana Krishnareddy"
+author: "Bhanu Varaprasad"
 date: "2023-12-08"
 categories: [news, code, analysis,plotly,plot]
 image: "b.jpg"
