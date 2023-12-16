@@ -1,229 +1,103 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html lang="en">
 
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.353">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of Data Science</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        h1, h2 {
+            color: #333;
+        }
 
-<meta name="author" content="Bhanu Varaprasad">
-<meta name="dcterms.date" content="2023-12-12">
+        p {
+            color: #555;
+        }
 
-<title>Bhanu Varaprasad - Wine dataset exploratory data analysis</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../images/profile.jpg" rel="icon" type="image/jpeg">
-<script src="../../site_libs/quarto-html/quarto.js"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
-  "limit": 20,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
-  }
-}</script>
-
-
+        section {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 
-<body class="nav-fixed fullcontent">
+<body>
 
+    <header>
+        <h1>The Power of Data Science</h1>
+    </header>
 
+    <section>
+        <h2>Understanding the Essence of Data Science</h2>
+        <p>
+            In the dynamic landscape of technology, one field stands tall, driving innovation and unraveling insights from
+            the vast sea of information – Data Science. This multidisciplinary domain seamlessly blends statistics,
+            computer science, and domain-specific knowledge to extract meaningful patterns and predictions from raw data.
+        </p>
+    </section>
 
-  <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../../index.html">
-    <span class="navbar-title">Yojana Krishnareddy</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../projects.html" rel="" target="">
- <span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../resume.html" rel="" target="">
- <span class="menu-text">Resume</span></a>
-  </li>  
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/SriKairamkonda" rel="" target=""><i class="bi bi-github" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
-    <a class="nav-link" href="https://twitter.com" rel="" target=""><i class="bi bi-twitter" role="img">
-</i> 
- <span class="menu-text"></span></a>
-  </li>  
-</ul>
-            <div class="quarto-navbar-tools">
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
-</div>
+    <section>
+        <h2>The Role of Machine Learning in Data Science</h2>
+        <p>
+            Machine learning, a subset of artificial intelligence, plays a pivotal role in data science. Algorithms learn
+            from historical data, adapting and improving over time to make accurate predictions. From recommendation
+            systems to fraud detection, machine learning algorithms are the unsung heroes behind many technological
+            advancements.
+        </p>
+    </section>
 
+    <section>
+        <h2>Challenges and Opportunities in Data Science</h2>
+        <p>
+            While data science opens doors to endless possibilities, it comes with its own set of challenges. The sheer
+            volume of data, coupled with the need for sophisticated algorithms, poses hurdles. However, these challenges
+            are opportunities in disguise, pushing data scientists to develop innovative solutions and refine their craft.
+        </p>
+    </section>
 
-<section>
-    <h2>Understanding the Essence of Data Science</h2>
-    <p>
-        In the dynamic landscape of technology, one field stands tall, driving innovation and unraveling insights from
-        the vast sea of information – Data Science. This multidisciplinary domain seamlessly blends statistics,
-        computer science, and domain-specific knowledge to extract meaningful patterns and predictions from raw data.
-    </p>
-</section>
+    <section>
+        <h2>Real-World Applications of Data Science</h2>
+        <p>
+            Data science isn't confined to academic discussions; its impact is palpable across various industries. From
+            healthcare, where predictive analytics aids in disease prevention, to finance, where algorithms optimize
+            investment strategies, the applications are diverse and far-reaching.
+        </p>
+    </section>
 
-<section>
-    <h2>The Role of Machine Learning in Data Science</h2>
-    <p>
-        Machine learning, a subset of artificial intelligence, plays a pivotal role in data science. Algorithms learn
-        from historical data, adapting and improving over time to make accurate predictions. From recommendation
-        systems to fraud detection, machine learning algorithms are the unsung heroes behind many technological
-        advancements.
-    </p>
-</section>
+    <section>
+        <h2>Ethical Considerations in Data Science</h2>
+        <p>
+            As data scientists harness the power of information, ethical considerations become paramount. Privacy
+            concerns, biased algorithms, and the responsible use of data are crucial aspects that demand attention.
+            Striking a balance between technological innovation and ethical responsibility is a challenge that the data
+            science community actively addresses.
+        </p>
+    </section>
 
-<section>
-    <h2>Challenges and Opportunities in Data Science</h2>
-    <p>
-        While data science opens doors to endless possibilities, it comes with its own set of challenges. The sheer
-        volume of data, coupled with the need for sophisticated algorithms, poses hurdles. However, these challenges
-        are opportunities in disguise, pushing data scientists to develop innovative solutions and refine their craft.
-    </p>
-</section>
+    <section>
+        <h2>The Future Landscape of Data Science</h2>
+        <p>
+            The journey of data science is an ever-evolving one. As technology advances, new tools and techniques emerge,
+            reshaping the landscape. The integration of artificial intelligence, the rise of edge computing, and the
+            continuous refinement of algorithms are just glimpses into the exciting future of data science.
+        </p>
+    </section>
 
-<section>
-    <h2>Real-World Applications of Data Science</h2>
-    <p>
-        Data science isn't confined to academic discussions; its impact is palpable across various industries. From
-        healthcare, where predictive analytics aids in disease prevention, to finance, where algorithms optimize
-        investment strategies, the applications are diverse and far-reaching.
-    </p>
-</section>
+    <section>
+        <h2>In Conclusion</h2>
+        <p>
+            Data science is not merely a field of study; it's a transformative force shaping our world. Its applications
+            are vast, its challenges are stimulating, and its ethical considerations are pressing. As we navigate this
+            data-centric era, the marvels of data science continue to unfold, promising a future where information
+            becomes our greatest asset.
+        </p>
+    </section>
 
-<section>
-    <h2>Ethical Considerations in Data Science</h2>
-    <p>
-        As data scientists harness the power of information, ethical considerations become paramount. Privacy
-        concerns, biased algorithms, and the responsible use of data are crucial aspects that demand attention.
-        Striking a balance between technological innovation and ethical responsibility is a challenge that the data
-        science community actively addresses.
-    </p>
-</section>
+</body>
 
-<section>
-    <h2>The Future Landscape of Data Science</h2>
-    <p>
-        The journey of data science is an ever-evolving one. As technology advances, new tools and techniques emerge,
-        reshaping the landscape. The integration of artificial intelligence, the rise of edge computing, and the
-        continuous refinement of algorithms are just glimpses into the exciting future of data science.
-    </p>
-</section>
-
-<section>
-    <h2>In Conclusion</h2>
-    <p>
-        Data science is not merely a field of study; it's a transformative force shaping our world. Its applications
-        are vast, its challenges are stimulating, and its ethical considerations are pressing. As we navigate this
-        data-centric era, the marvels of data science continue to unfold, promising a future where information
-        becomes our greatest asset.
-    </p>
-</section>
-
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">Made with <a href="https://quarto.org/">Yojana Krishnareddy</a></div>   
-    <div class="nav-footer-center"><a href="mailto:%20Krishna.YojanaKrishnareddy@my.unt.edu">Contact Yojana Krishnareddy</a></div>
-    <div class="nav-footer-right"><a href="https://github.com">Github Code Repo</a></div>
-  </div>
-</footer>
-
-
-
-</body></html>
+</html>
