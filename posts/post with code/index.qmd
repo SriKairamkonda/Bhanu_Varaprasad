@@ -1,5 +1,5 @@
 ---
-title: "Housing data analysis"
+title: "Unveiling the Marvels of Data Science: A Journey into the Heart of Information"
 author: "Bhanu Varaprasad"
 date: "2023-12-08"
 categories: [news, code, analysis,plotly,plot]
